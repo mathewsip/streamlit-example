@@ -63,4 +63,4 @@ if st.sidebar.button('Generate Sine Wave'):
     st.subheader('Sine Wave Plot')
     st.line_chart(list(zip(x, y))
 
-st.markdown("Note: You can switch between the 'Data Upload' and 'Modeling' tabs to perform the respective tasks.")
+st.write("Note: You can switch between the 'Data Upload' and 'Modeling' tabs to perform the respective tasks.")
