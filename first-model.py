@@ -1,6 +1,5 @@
 import streamlit as st
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Define the function to generate a sine wave
 def generate_sine_wave(frequency, num_points):
@@ -20,13 +19,9 @@ num_points = st.sidebar.slider('Number of Points', 50, 500, 100)  # Adjust the n
 if st.sidebar.button('Generate Sine Wave'):
     x, y = generate_sine_wave(frequency, num_points)
     
-    # Plot the results
+    # Plot the results using st.pyplot()
     st.subheader('Sine Wave Plot')
-    plt.figure(figsize=(8, 6))
-    plt.plot(x, y)
-    plt.xlabel('X-axis')
-    plt.ylabel('Y-axis')
-    st.pyplot(plt)
+    st.line_chart(list(zip(x, y))
 
 # Allow editing data
 st.sidebar.header('Edit Data')
