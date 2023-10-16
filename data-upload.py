@@ -4,12 +4,6 @@ from io import StringIO
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Define the function to generate a sine wave
-def generate_sine_wave(frequency, num_points):
-    x = np.linspace(0, 2 * np.pi, num_points)
-    y = np.sin(frequency * x)
-    return x, y
-
 # Function to upload and load data
 def load_data():
     uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
@@ -17,6 +11,16 @@ def load_data():
         data = pd.read_csv(uploaded_file)
         return data
     return None
+
+# Load default data
+default_data_url = "https://raw.githubusercontent.com/mathewsip/streamlit-example/master/evProfile.csv"
+default_data = pd.read_csv(default_data_url)
+
+# Define the function to generate a sine wave
+def generate_sine_wave(frequency, num_points):
+    x = np.linspace(0, 2 * np.pi, num_points)
+    y = np.sin(frequency * x)
+    return x, y
 
 # Main Streamlit app
 st.title('Data and Modeling App')
@@ -26,21 +30,20 @@ st.markdown('''
     ''')
 
 # First tab for data upload
-data = load_data()
-if data is not None:
-    st.write("Uploaded Data")
-    st.dataframe(data)
+data = load_data() or default_data  # Use default data if no data is uploaded
+st.write("Uploaded Data")
+st.dataframe(data)
 
-    st.sidebar.header('Edit Data')
-    new_data_text = st.sidebar.text_area('Edit Data (CSV format)', value=data.to_csv(index=False), height=300)
+st.sidebar.header('Edit Data')
+new_data_text = st.sidebar.text_area('Edit Data (CSV format)', value=data.to_csv(index=False), height=300)
 
-    if st.sidebar.button('Apply Changes'):
-        try:
-            new_data = pd.read_csv(StringIO(new_data_text))
-            data = new_data
-            st.success("Data updated successfully.")
-        except Exception as e:
-            st.error(f"Error: {e}")
+if st.sidebar.button('Apply Changes'):
+    try:
+        new_data = pd.read_csv(StringIO(new_data_text))
+        data = new_data
+        st.success("Data updated successfully.")
+    except Exception as e:
+        st.error(f"Error: {e}")
 
 # Second tab for modeling
 st.markdown('''
