@@ -19,9 +19,9 @@ num_points = st.sidebar.slider('Number of Points', 50, 500, 100)  # Adjust the n
 if st.sidebar.button('Generate Sine Wave'):
     x, y = generate_sine_wave(frequency, num_points)
     
-    # Plot the results using st.pyplot()
+    # Plot the results using st.line_chart()
     st.subheader('Sine Wave Plot')
-    st.line_chart(list(zip(x, y))
+    st.line_chart(list(zip(x, y)))
 
 # Allow editing data
 st.sidebar.header('Edit Data')
@@ -32,4 +32,4 @@ new_data = [float(x) for x in new_data.split(',')]
 st.subheader('Edited Data')
 st.write(new_data)
 
-st.write("Note: You can adjust the frequency and number of data points in the sidebar and generate a new sine wave plot.")
+st.write("Note: You can adjust the frequency and the number of data points in the sidebar and generate a new sine wave plot.")
