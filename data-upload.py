@@ -3,7 +3,7 @@ import pandas as pd
 from io import StringIO
 
 # Load default CSV data from GitHub
-default_data_url = "https://raw.githubusercontent.com/your_username/your_repository/master/evProfile.csv"
+default_data_url = "https://raw.githubusercontent.com/mathewsip/streamlit-example/master/evProfile.csv"
 data = pd.read_csv(default_data_url)
 
 # Display default data
