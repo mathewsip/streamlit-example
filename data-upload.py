@@ -61,10 +61,6 @@ if st.sidebar.button('Generate Sine Wave'):
 
     # Plot the results using st.pyplot()
     st.subheader('Sine Wave Plot')
-    plt.figure(figsize=(8, 6))
-    plt.plot(x, y)
-    plt.xlabel('X-axis')
-    plt.ylabel('Y-axis')
-    st.pyplot(plt)
+    st.line_chart(list(zip(x, y))
 
 st.write("Note: You can switch between the 'Data Upload' and 'Modeling' tabs to perform the respective tasks.")
