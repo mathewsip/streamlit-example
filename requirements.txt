@@ -3,3 +3,4 @@ matplotlib
 altair
 pandas
 streamlit
+openai
